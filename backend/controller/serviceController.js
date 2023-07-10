@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const Service =require('../model/serviceModel')
 
-const getServices = asyncHandler (async ()=>{
+const getServices = asyncHandler (async (req,res)=>{
     const services = await Service.find()
     res.status(200).json(services)
 })
@@ -14,8 +14,7 @@ const setServices = asyncHandler(async (req, res) => {
     }
   
     const service = await Service.create({
-      text: req.body.text,
-      user: req.user.id,
+      text: req.body.text
     })
   
     res.status(200).json(service)
@@ -24,4 +23,4 @@ const setServices = asyncHandler(async (req, res) => {
   module.exports = {
     getServices,
     setServices,
-  }
+  } 
